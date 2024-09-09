@@ -58,12 +58,12 @@ table.data-table th {
 }
 
 .btn-delete {
-    background-color: #dc3545;
-    color: white;
+    background-color: lightpink;
+    color: crimson;
 }
 
 .btn-clear {
-    background-color: #ffc107;
+    background-color: red;
     color: white;
 }
 
