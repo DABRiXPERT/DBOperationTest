@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}顯示資料{% endblock %}
+
+{% block content %}
+<h1>資料內容</h1>
+<table class="data-table">
+    <thead>
+    <tr>
+        <th>時間</th>
+        <th>參數A</th>
+        <th>參數B</th>
+        <th>參數C</th>
+        <th>參數D</th>
+        <th>參數E</th>
+        <th>參數F</th>
+        <th>參數G</th>
+        <th>參數H</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for entry in data %}
+    <tr>
+        <td>{{ entry.converted_date }}</td>
+        <td>{{ entry.parameter_a }}</td>
+        <td>{{ entry.parameter_b }}</td>
+        <td>{{ entry.parameter_c }}</td>
+        <td>{{ entry.parameter_d }}</td>
+        <td>{{ entry.parameter_e }}</td>
+        <td>{{ entry.parameter_f }}</td>
+        <td>{{ entry.parameter_g }}</td>
+        <td>{{ entry.parameter_h }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

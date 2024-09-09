@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}上傳CSV{% endblock %}
+
+{% block content %}
+<h1>上傳CSV檔案</h1>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-upload">上傳CSV</button>
+</form>
+{% endblock %}

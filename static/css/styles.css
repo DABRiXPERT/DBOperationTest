@@ -1,0 +1,73 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 15px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #007BFF;
+}
+
+.content {
+    margin: 20px;
+}
+
+h1 {
+    font-size: 24px;
+    color: #007BFF;
+}
+
+table.data-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table.data-table th, table.data-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+table.data-table th {
+    background-color: #007BFF;
+    color: white;
+}
+
+.btn {
+    padding: 10px 20px;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+.btn-upload {
+    background-color: #28a745;
+    color: white;
+}
+
+.btn-delete {
+    background-color: #dc3545;
+    color: white;
+}
+
+.btn-clear {
+    background-color: #ffc107;
+    color: white;
+}
+
+.warning-text {
+    color: red;
+    font-weight: bold;
+}
