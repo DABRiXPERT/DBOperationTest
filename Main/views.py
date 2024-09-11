@@ -2,7 +2,7 @@ import csv
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from Main.models import DataEntry
-from .forms import UploadCSVForm
+from DBOperationTest.forms import UploadCSVForm
 
 # Create your views here.
 def upload_csv(request):
