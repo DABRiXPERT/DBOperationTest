@@ -18,9 +18,12 @@ from django.urls import path
 from Main import views
 
 urlpatterns = [
-    path('upload/', views.upload_csv, name='upload_csv'),
+    path('', views.index, name='index'),
+    path('upload_csv/', views.upload_csv, name='upload_csv'),
     path('show/', views.show_data, name='show_data'),
-    path('delete/', views.delete_data, name='delete_data'),
-    path('clear/', views.clear_data, name='clear_data'),
-    path('', views.index, name='index')
+    path('delete_row/<int:id>/', views.delete_row, name='delete_row'),
+    path('clear_data/', views.clear_data, name='clear_data'),
+    path('update_row/<int:id>/', views.update_row, name='update_row'),
 ]
+
+

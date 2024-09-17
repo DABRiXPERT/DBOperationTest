@@ -2,6 +2,7 @@ body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
     color: #333;
+    margin: 20px;
 }
 
 nav ul {
@@ -19,18 +20,17 @@ nav ul li a {
     color: #007BFF;
 }
 
-.content {
-    margin: 20px;
-}
-
 h1 {
     font-size: 24px;
     color: #007BFF;
+    text-align: center;
 }
 
+/* 通用表格樣式 */
 table.data-table {
     width: 100%;
     border-collapse: collapse;
+    margin-top: 20px;
 }
 
 table.data-table th, table.data-table td {
@@ -44,10 +44,25 @@ table.data-table th {
     color: white;
 }
 
-.btn {
-    padding: 10px 20px;
+/* 日期單元格樣式 */
+table.data-table td[data-field="unix_month"] {
+    background-color: #f9f9f9; /* 淡灰色背景 */
+    color: #333; /* 文字顏色 */
+}
+
+/* 可編輯單元格樣式 */
+table.data-table td.editable {
     cursor: pointer;
+    background-color: #e9ecef; /* 較亮的背景顏色以示可編輯 */
+}
+
+
+/* 按鈕樣式 */
+.btn {
+    padding: 8px 12px;
     border: none;
+    cursor: pointer;
+    font-size: 16px;
     border-radius: 4px;
     margin-top: 10px;
 }
@@ -67,7 +82,51 @@ table.data-table th {
     color: white;
 }
 
-.warning-text {
-    color: red;
-    font-weight: bold;
+/* 其他按鈕樣式 */
+.btn-danger {
+    background-color: red;
+    color: white;
+}
+
+.btn-secondary {
+    background-color: gray;
+    color: white;
+}
+
+.btn-delete-row {
+    background-color: #ee8f8f;
+    color: #000000;
+    border-radius: 4px;
+}
+
+.btn-delete-row:hover {
+    background-color: #bd4c4c;
+    color: #cdcdcd;
+}
+
+/* 模態框樣式 */
+.modal {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    margin: 15% auto;
+    width: 300px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.modal-content p {
+    font-size: 18px;
+    margin-bottom: 20px;
 }

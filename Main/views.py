@@ -3,8 +3,11 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from Main.models import DataEntry
 from DBOperationTest.forms import UploadCSVForm
+from datetime import datetime
+from django.http import JsonResponse
+import json
 
-# Create your views here.
+# 上傳 CSV 檔案的視圖
 def upload_csv(request):
     if request.method == "POST":
         form = UploadCSVForm(request.POST, request.FILES)
@@ -29,29 +32,50 @@ def upload_csv(request):
         form = UploadCSVForm()
     return render(request, 'upload_csv.html', {'form': form})
 
+# 顯示資料的視圖
 def show_data(request):
-    data = DataEntry.objects.all().order_by('unix_month')
-    return render(request, 'show_data.html', {'data': data})
+    entries = DataEntry.objects.all().order_by('unix_month')  # 按照 unix_month 排序
+    return render(request, 'show_data.html', {'entries': entries})
 
-def delete_data(request):
-    if request.method == "POST":
-        date_str = request.POST.get('delete_dates')
-        dates = date_str.split()
-        for date in dates:
-            year = int(date[:4])
-            month = int(date[4:])
-            unix_month = (year - 1970) * 12 + (month - 1)
-            DataEntry.objects.filter(unix_month=unix_month).delete()
-        messages.success(request, "刪除資料完成")
+# 刪除單列資料的視圖
+def delete_row(request, id):
+    if request.method == 'POST':  # 使用 POST 方法
+        try:
+            entry = DataEntry.objects.get(id=id)
+            entry.delete()
+            messages.success(request, "刪除資料成功")
+        except DataEntry.DoesNotExist:
+            messages.error(request, "要刪除的資料不存在")
         return redirect('show_data')
-    return render(request, 'delete_data.html')
 
+# 清空資料庫的視圖
 def clear_data(request):
-    if request.method == "POST":
-        DataEntry.objects.all().delete()
-        messages.success(request, "清除所有資料完成")
+    if request.method == 'POST':
+        DataEntry.objects.all().delete()  # 刪除所有資料
+        messages.success(request, "已清空所有資料")
         return redirect('show_data')
-    return render(request, 'clear_data.html')
 
+# 更新單列資料的視圖
+def update_row(request, id):
+    if request.method == 'POST':
+        entry = DataEntry.objects.get(id=id)
+        data = json.loads(request.body)
+        field = data.get('field')
+        value = data.get('value')
+
+        # 根據 field 來更新對應的欄位
+        if field == 'unix_month':
+            # 將 YYYYMM 轉換為 UNIX 月份
+            from datetime import datetime
+            date_obj = datetime.strptime(value, '%Y%m')
+            unix_month = (date_obj.year - 1970) * 12 + date_obj.month - 1
+            entry.unix_month = unix_month
+        else:
+            setattr(entry, field, float(value))  # 將數值欄位更新為浮點數
+
+        entry.save()  # 保存更新
+        return JsonResponse({'status': 'success'})  # 返回 JSON 響應
+
+# 基本的首頁視圖
 def index(request):
     return render(request, 'base.html')

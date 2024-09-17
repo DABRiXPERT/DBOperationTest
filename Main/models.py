@@ -14,7 +14,7 @@ class DataEntry(models.Model):
 
     @property
     def converted_date(self):
-        # 將UNIX月份轉換成西元年月
+        # 將 UNIX 月份轉換成西元年月
         year = 1970 + self.unix_month // 12
         month = self.unix_month % 12 + 1
         return f"{year}-{month:02d}"
