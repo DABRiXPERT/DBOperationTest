@@ -79,3 +79,23 @@ def update_row(request, id):
 # 基本的首頁視圖
 def index(request):
     return render(request, 'base.html')
+
+#line_chart_test
+def show_data_vision(request):
+    entries = DataEntry.objects.all().order_by('unix_month')
+
+    # 提取數據給前端
+    labels = [entry.converted_date for entry in entries]  # 這裡的 unix_month 是數字
+    data = [[entry.parameter_a for entry in entries],
+            [entry.parameter_b for entry in entries],
+            [entry.parameter_c for entry in entries],
+            [entry.parameter_d for entry in entries],
+            [entry.parameter_e for entry in entries],
+            [entry.parameter_f for entry in entries],
+            [entry.parameter_g for entry in entries],
+            [entry.parameter_h for entry in entries]]         # 對應的數據值
+
+    return render(request, 'show_data_vision.html', {
+        'labels': labels,
+        'data': data,
+    })
