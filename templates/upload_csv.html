@@ -1,12 +1,47 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}上傳CSV{% endblock %}
 
 {% block content %}
-<h1>CSV檔案上傳</h1>
-<form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-upload">上傳CSV</button>
-</form>
+    <h1>CSV檔案上傳</h1>
+    <form id="upload-form" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-upload">上傳CSV</button>
+    </form>
+    
+    <style>
+    .btn-overwrite {
+        background-color: orange;
+        color: black;
+        padding: 8px 12px;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+        border-radius: 4px;
+        margin-top: 10px;
+    }
+    </style>
+    
+    <!-- 模態框HTML -->
+    <div id="alert-dialog" class="modal">
+        <div class="modal-content">
+            <p>檢測到衝突的資料，請選擇以下操作：</p>
+            <button id="overwrite-btn" class="btn-overwrite">覆寫</button>
+            <button id="skip-btn" class="btn btn-secondary">略過</button>
+            <button id="cancel-btn" class="btn btn-danger">取消</button>
+        </div>
+    </div>
+
+    <!-- 將 URL 和 CSRF token 傳遞給 JavaScript -->
+    <script>
+        const uploadCsvUrl = "{% url 'upload_csv' %}";
+        const resolveConflictsUrl = "{% url 'resolve_conflicts' %}";
+        const showDataUrl = "{% url 'show_data' %}";
+        const csrfToken = '{{ csrf_token }}';
+    </script>
+
+    <!-- 引入外部 JavaScript -->
+    <script src="{% static 'js/script_upload_csv.js' %}"></script>
 {% endblock %}
