@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 
-{% block title %}顯示資料{% endblock %}
+{% block title %}編輯資料{% endblock %}
 
 {% block content %}
-    <h1>資料顯示</h1>
+    <h1>編輯資料</h1>
 
     <!-- 清除所有資料的表單 -->
     <form id="clear-form" action="{% url 'clear_data' %}" method="POST">
@@ -13,7 +13,7 @@
 
     <div id="alert-dialog" class="modal">
         <div class="modal-content">
-            <p>確定要清除所有資料嗎？此操作無法還原。</p>
+            <p>確定要清除所有資料嗎？<br><b style="color: red">此操作無法還原。</b></p>
             <button id="confirm-clear-btn" class="btn btn-danger">確認清除</button>
             <button id="cancel-clear-btn" class="btn btn-secondary">取消</button>
         </div>

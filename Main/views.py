@@ -81,7 +81,7 @@ def index(request):
     return render(request, 'base.html')
 
 #line_chart_test
-def show_data_vision(request):
+def data_visualize(request):
     entries = DataEntry.objects.all().order_by('unix_month')
 
     # 提取數據給前端
@@ -95,7 +95,7 @@ def show_data_vision(request):
             [entry.parameter_g for entry in entries],
             [entry.parameter_h for entry in entries]]         # 對應的數據值
 
-    return render(request, 'show_data_vision.html', {
+    return render(request, 'data_visualize.html', {
         'labels': labels,
         'data': data,
     })

@@ -24,7 +24,7 @@ urlpatterns = [
     path('delete_row/<int:id>/', views.delete_row, name='delete_row'),
     path('clear_data/', views.clear_data, name='clear_data'),
     path('update_row/<int:id>/', views.update_row, name='update_row'),
-    path('show_data_vision/', views.show_data_vision, name='show_data_vision'),
+    path('data_visualize/', views.data_visualize, name='data_visualize'),
     
 ]
 

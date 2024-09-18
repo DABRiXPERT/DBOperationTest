@@ -1,0 +1,6 @@
+.charts-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);  /* 2列 */
+    grid-template-rows: auto;               /* 自動排列行 */
+    gap: 30px;                              /* 圖表之間的間距 */
+}

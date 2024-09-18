@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}顯示資料{% endblock %}
+
+{% block content %}
+    <h1>資料圖表</h1>
+    <link rel="stylesheet" href="{% static 'css/chart.css' %}">
+    <div id="charts-container" class="charts-grid"></div>
+
+    <!-- 引入外部的 JavaScript 文件 -->
+    <script>
+        var labels = {{ labels|safe }};  // X軸標籤 (converted_date)
+        var data = {{ data|safe }};      // 多維數組 (參數資料)
+    </script>
+    <script src="{% static 'js/script_data_visualize.js' %}"></script>
+{% endblock %}

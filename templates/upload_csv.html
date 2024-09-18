@@ -3,7 +3,7 @@
 {% block title %}上傳CSV{% endblock %}
 
 {% block content %}
-<h1>上傳CSV檔案</h1>
+<h1>CSV檔案上傳</h1>
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
